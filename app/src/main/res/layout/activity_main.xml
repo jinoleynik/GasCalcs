@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edt_price"
+            style="@style/EdtMain"
+            android:hint="Цена, грн" />
+
+        <EditText
+            android:id="@+id/edt_temperature"
+            style="@style/EdtMain"
+            android:hint="Температура воздуха" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edt_baloon_volume"
+            style="@style/EdtMain"
+            android:hint="Обьем балонов,л" />
+
+        <EditText
+            android:id="@+id/edt_ent_press"
+            style="@style/EdtMain"
+            android:hint="Остаточное давление" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edt_for_full"
+            style="@style/EdtMain"
+            android:hint="Заправка до полного" />
+
+        <EditText
+            android:id="@+id/edt_for_sum"
+            style="@style/EdtMain"
+            android:hint="Заправка на сумму" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/edt_end_full"
+            style="@style/EdtMain"
+            android:hint="Цена, грн" />
+
+        <TextView
+            android:id="@+id/edt_end_for_value"
+            style="@style/EdtMain"
+            android:hint="Температура воздуха" />
+    </LinearLayout>
+</LinearLayout>
