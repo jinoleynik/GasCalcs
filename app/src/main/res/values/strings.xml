@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GasCalc</string>
+    <string name="app_name">Расчет заправки газа</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="ost_value">Остаточное давление:</string>
+    <string name="balon_volume">Обьем балонов,л</string>
+    <string name="temperatura">Температура воздуха:</string>
+    <string name="value_full">Обьем, м\u00B3:</string>
+    <string name="load_for_sum">Заправка на сумму</string>
+    <string name="gas_price">Цена газа за м\u00B3</string>
 
 </resources>

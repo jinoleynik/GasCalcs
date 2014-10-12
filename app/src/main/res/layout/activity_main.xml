@@ -2,71 +2,188 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:padding="10dp">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <LinearLayout
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_editext"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TvHead"
+                    android:text="@string/gas_price" />
+
+                <EditText
+                    android:id="@+id/edt_price"
+                    style="@style/EdtMainWidth"
+                    android:hint="Цена, грн" />
+
+                <TextView
+                    style="@style/TvHead"
+                    android:text="@string/balon_volume" />
+
+                <EditText
+                    android:id="@+id/edt_baloon_volume"
+                    style="@style/EdtMainWidth"
+                    android:hint="Введите объем" />
+
+                <TextView
+                    style="@style/TvHead"
+                    android:text="Температура воздуха" />
+
+                <Spinner
+                    android:id="@+id/temp_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/TvHead"
+                    android:text="@string/ost_value" />
+
+                <Spinner
+                    android:id="@+id/ost_volume_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_editext"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TvHead"
+                    android:textStyle="bold"
+                    android:text="Заправка до полного" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TvHead"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:text="@string/value_full" />
+
+                    <TextView
+                        style="@style/TvHead"
+                        android:id="@+id/edt_end_full_value"
+                        android:layout_weight="1"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TvHead"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:text="Цена, грн:" />
+
+                    <TextView
+                        style="@style/TvHead"
+                        android:id="@+id/edt_end_full_price"
+                        android:layout_weight="1"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_editext"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TvHead"
+                    android:textStyle="bold"
+                    android:text="@string/load_for_sum" />
+
+                <EditText
+                    android:id="@+id/edt_money_value"
+                    style="@style/EdtMainWidth"
+                    android:hint="Введите сумму, грн" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TvHead"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:text="@string/value_full" />
+
+                    <TextView
+                        style="@style/TvHead"
+                        android:id="@+id/edt_end_money_value"
+                        android:layout_weight="1"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TvHead"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:text="Конечное давление:" />
+
+                    <TextView
+                        style="@style/TvHead"
+                        android:id="@+id/edt_end_money_ost"
+                        android:layout_weight="1"
+                        android:layout_width="0dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_alert"
+                    style="@style/TvHead"
+                    android:visibility="gone"
+                    android:textColor="#ffff0000"
+                    android:text="Количество  газа за введеную сумму превышает допустимый обьем." />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/calculate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/edt_price"
-            style="@style/EdtMain"
-            android:hint="Цена, грн" />
-
-        <EditText
-            android:id="@+id/edt_temperature"
-            style="@style/EdtMain"
-            android:hint="Температура воздуха" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/edt_baloon_volume"
-            style="@style/EdtMain"
-            android:hint="Обьем балонов,л" />
-
-        <EditText
-            android:id="@+id/edt_ent_press"
-            style="@style/EdtMain"
-            android:hint="Остаточное давление" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/edt_for_full"
-            style="@style/EdtMain"
-            android:hint="Заправка до полного" />
-
-        <EditText
-            android:id="@+id/edt_for_sum"
-            style="@style/EdtMain"
-            android:hint="Заправка на сумму" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/edt_end_full"
-            style="@style/EdtMain"
-            android:hint="Цена, грн" />
-
-        <TextView
-            android:id="@+id/edt_end_for_value"
-            style="@style/EdtMain"
-            android:hint="Температура воздуха" />
-    </LinearLayout>
+        android:background="@drawable/bg_button"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:text="Расчитать" />
 </LinearLayout>

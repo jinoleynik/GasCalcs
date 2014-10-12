@@ -1,8 +1,19 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+
+        <item name="android:actionBarStyle" tools:ignore="NewApi">@style/MyActionBar</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/actionbar_background</item>
+
+        <!-- Support library compatibility -->
+        <item name="background">@drawable/actionbar_background</item>
     </style>
 
     <style name="EdtMain">
@@ -12,9 +23,25 @@
         <item name="android:textSize">18dp</item>
         <item name="android:padding">10dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:inputType">number</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:background">@drawable/selector_editext</item>
 
+    </style>
 
+    <style name="EdtMainWidth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:background">@drawable/selector_editext</item>
+    </style>
+
+    <style name="TvHead">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:padding">10dp</item>
     </style>
 
 

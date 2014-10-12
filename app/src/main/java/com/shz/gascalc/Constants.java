@@ -184,16 +184,33 @@ public class Constants {
             0.2236,
             0.2326
     };
-    public static final HashMap<Integer, Double[]> TEMPERATURE_MAP = new HashMap<Integer, Double[]>();
+    public static final HashMap<String, Double[]> TEMPERATURE_MAP = new HashMap<String, Double[]>();
 
+    public static final String TEMP_MINUS_30 = "-30";
+
+    public static final String TEMP_MINUS_20 = "-20";
+
+    public static final String TEMP_MINUS_10 = "-10";
+
+    public static final String TEMP_ZERO = "0";
+
+    public static final String TEMP_PLUS_10 = "10";
+
+    public static final String TEMP_PLUS_20 = "20";
+
+    public static final String TEMP_PLUS_30 = "30";
+
+    public static final String TEMP_PLUS_40 = "40";
+    public static final String[] TEMP_MAP = {TEMP_MINUS_30, TEMP_MINUS_20, TEMP_MINUS_10, TEMP_ZERO, TEMP_PLUS_10, TEMP_PLUS_20, TEMP_PLUS_30, TEMP_PLUS_40};
+    public static final String[] OST_VALUE_MAP = {"10","20","30","40","50","60","70","80","90","100","110","120","130","140","150","160","170","180","190","200"};
     static {
-        TEMPERATURE_MAP.put(-30, temp_minus_30);
-        TEMPERATURE_MAP.put(-20, temp_minus_20);
-        TEMPERATURE_MAP.put(-10, temp_minus_10);
-        TEMPERATURE_MAP.put(0, temp_0);
-        TEMPERATURE_MAP.put(10, temp_plus_10);
-        TEMPERATURE_MAP.put(20, temp_plus_20);
-        TEMPERATURE_MAP.put(30, temp_plus_30);
-        TEMPERATURE_MAP.put(40, temp_plus_40);
+        TEMPERATURE_MAP.put(TEMP_MINUS_30, temp_minus_30);
+        TEMPERATURE_MAP.put(TEMP_MINUS_20, temp_minus_20);
+        TEMPERATURE_MAP.put(TEMP_MINUS_10, temp_minus_10);
+        TEMPERATURE_MAP.put(TEMP_ZERO, temp_0);
+        TEMPERATURE_MAP.put(TEMP_PLUS_10, temp_plus_10);
+        TEMPERATURE_MAP.put(TEMP_PLUS_20, temp_plus_20);
+        TEMPERATURE_MAP.put(TEMP_PLUS_30, temp_plus_30);
+        TEMPERATURE_MAP.put(TEMP_PLUS_40, temp_plus_40);
     }
 }

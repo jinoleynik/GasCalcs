@@ -5,85 +5,123 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity implements TextWatcher {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     private EditText mEdtPrice;
     private EditText mEdtTemperature;
     private EditText mEdtBaloonVolume;
-    private EditText mEdtForSum;
-    private TextView mEdtEndSumFull;
-    private TextView mEdtEndSumSum;
+    private Spinner mSpinnerTemperature;
+    private Spinner mSpinnerOstValue;
+    private TextView mTvEndFullPrice;
+    private TextView mTvEndFullValue;
+    private EditText mMoneyValue;
+    private TextView mTvEndMoneyOst;
+    private TextView mTvEndMoneyValue;
+    private TextView mTvAlert;
+    private static boolean isDebug = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mEdtPrice = (EditText) findViewById(R.id.edt_price);
-        mEdtTemperature = (EditText) findViewById(R.id.edt_temperature);
         mEdtBaloonVolume = (EditText) findViewById(R.id.edt_baloon_volume);
-        mEdtForSum = (EditText) findViewById(R.id.edt_for_sum);
-        mEdtEndSumFull = (TextView) findViewById(R.id.edt_end_full);
-        mEdtEndSumSum = (TextView) findViewById(R.id.edt_end_for_value);
 
-        mEdtForSum.addTextChangedListener(this);
-        mEdtTemperature.addTextChangedListener(this);
-        mEdtBaloonVolume.addTextChangedListener(this);
-        mEdtPrice.addTextChangedListener(this);
 
+        mSpinnerTemperature = (Spinner) findViewById(R.id.temp_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_spinner, Constants.TEMP_MAP);
+        adapter.setDropDownViewResource(R.layout.item_spinner);
+        mSpinnerTemperature.setAdapter(adapter);
+        mSpinnerTemperature.setPrompt(getString(R.string.temperatura));
+        mSpinnerTemperature.setSelection(3);
+        mSpinnerOstValue = (Spinner) findViewById(R.id.ost_volume_spinner);
+        ArrayAdapter<String> adapterOst = new ArrayAdapter<String>(this, R.layout.item_spinner, Constants.OST_VALUE_MAP);
+        adapter.setDropDownViewResource(R.layout.item_spinner);
+        mSpinnerOstValue.setAdapter(adapterOst);
+        mSpinnerOstValue.setPrompt(getString(R.string.ost_value));
+        mSpinnerOstValue.setSelection(0);
+        mTvEndFullPrice = (TextView) findViewById(R.id.edt_end_full_price);
+        mTvEndFullValue = (TextView) findViewById(R.id.edt_end_full_value);
+        findViewById(R.id.calculate).setOnClickListener(this);
+        mMoneyValue = (EditText) findViewById(R.id.edt_money_value);
+
+        mTvEndMoneyOst = (TextView) findViewById(R.id.edt_end_money_ost);
+        mTvEndMoneyValue = (TextView) findViewById(R.id.edt_end_money_value);
+        mTvAlert = (TextView) findViewById(R.id.tv_alert);
+        if (isDebug) {
+            mEdtBaloonVolume.setText("65");
+            mEdtPrice.setText("9");
+            mMoneyValue.setText("100");
+        }
     }
+//    16,458
 
     private void calculate() {
-        int temperature = 0;
+//        int temperature = 0;
         double price = 0;
-        Log.d("mylog", mEdtPrice.getText().toString());
-        Log.d("mylog", mEdtTemperature.getText().toString());
-        if (!mEdtPrice.getText().toString().equals("")) {
-            try{
-                price = Double.parseDouble(mEdtPrice.getText().toString());
-            }catch (NumberFormatException e){
-                price = 0;
+        String valuePrice = mEdtPrice.getText().toString().trim();
+        String baloonValue = mEdtBaloonVolume.getText().toString().trim();
+        String temperature = mSpinnerTemperature.getSelectedItem().toString();
+        Double[] curValues = Constants.TEMPERATURE_MAP.get(temperature);
+        Double ostValue = curValues[mSpinnerOstValue.getSelectedItemPosition()];
+        int baloonVal = 0;
+        if (!baloonValue.isEmpty())
+            baloonVal = Integer.parseInt(baloonValue);
+
+        double fullValue = curValues[curValues.length - 1] * baloonVal - baloonVal * ostValue;
+
+        if (!valuePrice.isEmpty()) {
+            price = Double.parseDouble(valuePrice);
+        }
+        double fullValuePrice = price * fullValue;
+        mTvEndFullPrice.setText(String.format("%.2f", fullValuePrice));
+        mTvEndFullValue.setText(String.format("%.2f", fullValue));
+
+
+        String priceValue = mMoneyValue.getText().toString().trim();
+        int money = 0;
+        if (!priceValue.isEmpty()) {
+            money = Integer.parseInt(priceValue);
+
+            double ostMoneyValue = money / price / baloonVal + ostValue;
+            mTvEndMoneyValue.setText(String.format("%.2f", (float) money / price));
+            for (int i = 0; i < curValues.length; i++) {
+                double val1 = curValues[i];
+                double nextVal = 1;
+                if (i < curValues.length - 1) {
+                    nextVal = curValues[i + 1];
+                }
+                if (ostMoneyValue >= val1 && ostMoneyValue <= nextVal) {
+                    int v1 = i * 10 + 10;
+                    double v2 = (nextVal - val1) / 10;
+                    while (val1 < ostMoneyValue) {
+                        v1++;
+                        val1 += v2;
+                    }
+                    Log.d("mylog", "value = " + val1 + "   " + v1);
+                    mTvEndMoneyOst.setText(String.valueOf(v1));
+                }
+
             }
 
         }
-        if (!mEdtTemperature.getText().toString().equals(""))
-            temperature = getTemperature();
-        mEdtPrice.setText("value = "+price +" "+temperature);
+        mTvAlert.setVisibility(money > fullValuePrice ? View.VISIBLE : View.GONE);
     }
 
-    int roundUp(int n) {
-        return (n + 4) / 5 * 5;
-    }
 
-    private int getTemperature() {
-        int temperature = Integer.parseInt(mEdtTemperature.getText().toString());
-        if (temperature > 0) {
-            temperature = roundUp(temperature);
-
-        } else {
-            temperature = -1 * roundUp(Math.abs(temperature));
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.calculate:
+                calculate();
+                break;
         }
-        return temperature;
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        calculate();
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
     }
 }
