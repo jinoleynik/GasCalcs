@@ -1,10 +1,7 @@
 package com.shz.gascalc;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -105,7 +102,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                         v1++;
                         val1 += v2;
                     }
-                    Log.d("mylog", "value = " + val1 + "   " + v1);
                     mTvEndMoneyOst.setText(String.valueOf(v1));
                 }
 

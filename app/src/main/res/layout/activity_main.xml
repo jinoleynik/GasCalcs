@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -7,8 +6,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:context=".MainActivity">
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +29,7 @@
                 <EditText
                     android:id="@+id/edt_price"
                     style="@style/EdtMainWidth"
-                    android:hint="Цена, грн" />
+                    android:hint="@string/hint_price" />
 
                 <TextView
                     style="@style/TvHead"
@@ -40,11 +38,11 @@
                 <EditText
                     android:id="@+id/edt_baloon_volume"
                     style="@style/EdtMainWidth"
-                    android:hint="Введите объем" />
+                    android:hint="@string/hint_value" />
 
                 <TextView
                     style="@style/TvHead"
-                    android:text="Температура воздуха" />
+                    android:text="@string/laber_temperature" />
 
                 <Spinner
                     android:id="@+id/temp_spinner"
@@ -75,7 +73,7 @@
                 <TextView
                     style="@style/TvHead"
                     android:textStyle="bold"
-                    android:text="Заправка до полного" />
+                    android:text="@string/upload_full" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -104,7 +102,7 @@
                         style="@style/TvHead"
                         android:layout_weight="1"
                         android:layout_width="0dp"
-                        android:text="Цена, грн:" />
+                        android:text="@string/label_price" />
 
                     <TextView
                         style="@style/TvHead"
@@ -129,7 +127,7 @@
                 <EditText
                     android:id="@+id/edt_money_value"
                     style="@style/EdtMainWidth"
-                    android:hint="Введите сумму, грн" />
+                    android:hint="@string/label_price_enter" />
 
 
                 <LinearLayout
@@ -159,7 +157,7 @@
                         style="@style/TvHead"
                         android:layout_weight="1"
                         android:layout_width="0dp"
-                        android:text="Конечное давление:" />
+                        android:text="@string/ost_presure" />
 
                     <TextView
                         style="@style/TvHead"
@@ -173,7 +171,7 @@
                     style="@style/TvHead"
                     android:visibility="gone"
                     android:textColor="#ffff0000"
-                    android:text="Количество  газа за введеную сумму превышает допустимый обьем." />
+                    android:text="@string/error_big_value" />
             </LinearLayout>
 
         </LinearLayout>
@@ -185,5 +183,5 @@
         android:background="@drawable/bg_button"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        android:text="Расчитать" />
+        android:text="@string/label_calc" />
 </LinearLayout>
