@@ -15,7 +15,7 @@
     <string name="ost_presure">Конечное давление:</string>
     <string name="error_big_value">Количество газа за введённую сумму превышает допустимый объем.</string>
     <string name="label_calc">Рассчитать</string>
-    <string name="laber_temperature">Температура воздуха</string>
+    <string name="laber_temperature">Температура воздуха:</string>
     <string name="hint_value">Введите объем</string>
     <string name="hint_price">Цена, грн</string>
 
